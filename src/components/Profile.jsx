@@ -1,7 +1,7 @@
 import React from 'react';
-
+import s from './Profile.module.css';
 function Profile(){
-   return <div className='content'>
+   return <div className={s.content}>
       <div>
          <img src="https://vk-oblozhki.ru/photos/big/shestiugol-niki-rendering-svet-forma-339-3732.jpg" alt="" />
       </div>
@@ -9,15 +9,15 @@ function Profile(){
          <img src="https://i.pinimg.com/736x/45/ef/d3/45efd3bcc430b83395f629a05a489ec5.jpg" alt="" />
       </div>
 
-      <div>
+      <div className={s.posts}>
          My posts
-         <div>
+         <div className={s.item}>
             New posts
          </div>
-         <div>
+         <div className={s.item}>
             post 1
          </div>
-         <div>
+         <div className={s.item}>
             post 2
          </div>
       </div>

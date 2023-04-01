@@ -1,24 +1,24 @@
 import React from 'react';
-
+import s from './Nav.module.css';
 function Nav(){
-   return <nav className='nav'>
-      <div>
-         <a href="">Profile</a>
+   return <nav className={s.nav}>
+      <div className={s.item}>
+         <a href="#">Profile</a>
       </div>
-      <div>
-         <a href="">News</a>
+      <div className={s.item}>
+         <a href="#">News</a>
       </div>
-      <div>
-         <a href="">Messenger</a>
+      <div className={s.item}>
+         <a href="#">Messenger</a>
       </div>
-      <div>
-         <a href="">Friends</a>
+      <div className={s.item}>
+         <a href="#">Friends</a>
       </div>
-      <div>
-         <a href="">Music</a>
+      <div className={s.item}>
+         <a href="#">Music</a>
       </div>
-      <div>
-         <a href="">Settings</a>
+      <div className={s.item}>
+         <a href="#">Settings</a>
       </div>
    </nav>
 }

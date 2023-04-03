@@ -1,0 +1,19 @@
+.nav{
+   grid-area: n ;
+   background-color:rgb(131, 255, 214);
+   text-align: center;
+   padding-top: 30px;
+}
+.nav__wrapper{
+   
+}
+.item{
+   font-size: 20px;
+   margin-bottom: 10px;
+}
+.item a{
+   text-decoration: none;
+}
+.item a:hover{
+   color:blueviolet;
+}

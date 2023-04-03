@@ -1,0 +1,9 @@
+.posts{
+   grid-area: p;
+   margin-left: 30px;
+   font-size: 28px;
+   margin-bottom: 30px;
+}
+.posts__title{
+   margin-bottom: 30px;
+}

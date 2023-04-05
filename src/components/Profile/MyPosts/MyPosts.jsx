@@ -4,8 +4,8 @@ import MyPost from './Post/MyPost';
 function MyPosts(){
    return <div className={s.posts}>
          <div className={s.posts__title}>My posts</div>
-         <MyPost/>
-         <MyPost/>
+         <MyPost message='Hi, damn illuspriiiite!' likesCount='14'/>
+         <MyPost message="Helooooo! It's my first post" likesCount='23'/>
          <MyPost/>
          <MyPost/>
          <MyPost/>

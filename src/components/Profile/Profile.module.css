@@ -1,6 +1,4 @@
 .content{
-   grid-area:c;
-   background-color:rgb(169, 107, 228);
    display: grid;
    width: 100%;
    margin: 0 auto;

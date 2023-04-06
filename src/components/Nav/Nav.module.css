@@ -2,7 +2,7 @@
    grid-area: n ;
    background-color:rgb(131, 255, 214);
    text-align: center;
-   padding-top: 30px;
+   padding: 30px 0px;
 }
 .nav__wrapper{
    
@@ -15,5 +15,9 @@
    text-decoration: none;
 }
 .item a:hover{
+   background-color:azure;
+}
+
+.active{
    color:blueviolet;
 }

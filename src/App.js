@@ -20,7 +20,7 @@ const App = () => {
                <Routes>
                   <Route path='/Profile' Component={Profile}/>
                   <Route path='/News' Component={News}/>
-                  <Route path='/Messenger' Component={Messenger}/>
+                  <Route path='/Messenger/*' Component={Messenger}/>
                   <Route path='/Friends' Component={Friends}/>
                   <Route path='/Music' Component={Music}/>
                   <Route path='/Settings' Component={Settings}/>

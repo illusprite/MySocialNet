@@ -11,19 +11,19 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 
 
-const App = () => {
+const App = (props) => {
    return (<BrowserRouter>
          <div className='app-wrapper'>
             <Header />
             <Nav />
             <div className='app-wrapper-content'>
                <Routes>
-                  <Route path='/Profile' Component={Profile}/>
-                  <Route path='/News' Component={News}/>
-                  <Route path='/Messenger/*' Component={Messenger}/>
-                  <Route path='/Friends' Component={Friends}/>
-                  <Route path='/Music' Component={Music}/>
-                  <Route path='/Settings' Component={Settings}/>
+                  <Route path='/Profile' element={<Profile postsData={props.appState.postsData}/>}/>
+                  <Route path='/News' element={<News />}/>
+                  <Route path='/Messenger/*' element={<Messenger messengerData={props.appState.messengerData} messengesData={props.appState.messengesData}/>}/>
+                  <Route path='/Friends' element={<Friends />}/>
+                  <Route path='/Music' element={<Music />}/>
+                  <Route path='/Settings' element={<Settings />}/>
                </Routes>
             </div>
          </div>

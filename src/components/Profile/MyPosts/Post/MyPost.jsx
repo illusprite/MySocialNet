@@ -7,7 +7,6 @@ function MyPost(props){
             <div>
                <span>like {props.likesCount}</span>
             </div>
-            
          </div>
 }
 export default MyPost;

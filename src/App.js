@@ -1,6 +1,6 @@
 import './App.css';
-import Messenger from './components/Messenger/Messenger';
 import Header from './components/Header/Header';
+import MessengerContainer from './components/Messenger/MessengerContainer';
 import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import Friends from './components/Friends/Friends';
@@ -12,17 +12,16 @@ import { Routes } from 'react-router-dom';
 
 
 const App = (props) => {
+   debugger
    return (<BrowserRouter>
          <div className='app-wrapper'>
             <Header />
             <Nav />
             <div className='app-wrapper-content'>
                <Routes>
-                  <Route path='/Profile' element={<Profile profilePage={props.state.profilePage}
-                                                            dispatch={props.dispatch}
-                                                            updateNewPostText={props.updateNewPostText}/>}/>
+                  <Route path='/Profile' element={<Profile store={props.store}/>}/>
                   <Route path='/News' element={<News />}/>
-                  <Route path='/Messenger/*' element={<Messenger messengerData={props.state.messengerPage.messengerData} messengesData={props.state.messengerPage.messengesData}/>}/>
+                  <Route path='/Messenger/*' element={<MessengerContainer store={props.store}/>}/>
                   <Route path='/Friends' element={<Friends />}/>
                   <Route path='/Music' element={<Music />}/>
                   <Route path='/Settings' element={<Settings />}/>

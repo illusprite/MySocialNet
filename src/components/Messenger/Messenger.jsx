@@ -5,25 +5,39 @@ import Message from "./Message/Message";
 
 const Messenger = (props) => {
 
-   let messengerElements = props.messengerData
+   let state = props.messengerPage;
+
+   let messengerElements = state.messengerData
       .map( d => <DialogItem name={d.name} id={d.id}/>);
-   let messegesElements = props.messengesData
+   let messegesElements = state.messengesData
       .map( m => <Message message={m.message}/>)
-   let newMessageElement = React.createRef();
-   let addMessage = () => {
-      alert(newMessageElement.current.value);
+   let newMessageBody = state.newMessageBody;
+
+
+   let onNewMessageChange = (e) => {
+      let body = e.target.value;
+      props.updateNewMessageBody(body);
+   }
+
+   let onSendMessageClick = () => {
+      props.sendMessage();
    };
+   
+
    return <div className={s.dialogs}>
       <div className={s.dialogsItems}>
          {messengerElements}
       </div>
       <div className={s.messeges}>
-         {messegesElements}
+         <div>{messegesElements}</div>
          <div>
-            <textarea name="" ref={newMessageElement} cols="50" rows="4"></textarea>
+            <textarea onChange={onNewMessageChange}
+            value={newMessageBody} 
+            placeholder='Enter your message' 
+            name="" cols="50" rows="4"></textarea>
          </div>
          <div>
-            <button onClick={addMessage}>Add message</button>
+            <button onClick={onSendMessageClick}>Send message</button>
          </div>
       </div>
    </div>

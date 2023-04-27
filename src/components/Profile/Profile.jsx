@@ -5,7 +5,7 @@ function Profile(props) {
    debugger
    return <div>
       <ProfileInfo/>
-      <MyPostsContainer store={props.store}/>
+      <MyPostsContainer/>
    </div>
 }
 

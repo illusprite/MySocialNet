@@ -8,9 +8,9 @@ const Messenger = (props) => {
    let state = props.messengerPage;
 
    let messengerElements = state.messengerData
-      .map( d => <DialogItem name={d.name} id={d.id}/>);
+      .map( d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
    let messegesElements = state.messengesData
-      .map( m => <Message message={m.message}/>)
+      .map( m => <Message message={m.message} key={m.id}/>)
    let newMessageBody = state.newMessageBody;
 
 

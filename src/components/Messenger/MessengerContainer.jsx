@@ -1,4 +1,4 @@
-import { sendMessageCreator, updateNewMessageBodyCreator } from "../../redux/messengerPage-reducer";
+import { sendMessage, updateNewMessageBody } from "../../redux/messengerPage-reducer";
 import Messenger from "./Messenger";
 import { connect } from "react-redux";
 
@@ -7,11 +7,11 @@ import { connect } from "react-redux";
    let state = props.store.getState();
 
    let onNewMessageChange = (body) => {
-      props.store.dispatch(updateNewMessageBodyCreator(body));
+      props.store.dispatch(updateNewMessageBody(body));
    }
 
    let onSendMessageClick = () => {
-      props.store.dispatch(sendMessageCreator());
+      props.store.dispatch(sendMessage());
    };
    
    return <Messenger messengerPage={state.messengerPageReducer} 
@@ -23,16 +23,6 @@ let mapStateToProps = (state) => {
       messengerPage: state.messengerPageReducer
    }
 }
-let mapDispatchToProps = (dispatch) => {
-   return {
-      updateNewMessageBody: (body) => {
-         dispatch(updateNewMessageBodyCreator(body));
-      },
-      sendMessage: () => {
-         dispatch(sendMessageCreator());
-      }
-   }
-}
-const MessengerContainer = connect(mapStateToProps, mapDispatchToProps)(Messenger);
+const MessengerContainer = connect(mapStateToProps, {updateNewMessageBody, sendMessage})(Messenger);
 
 export default MessengerContainer;

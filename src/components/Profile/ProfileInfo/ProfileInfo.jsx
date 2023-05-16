@@ -5,8 +5,6 @@ function ProfileInfo(props) {
    if(!props.profile){
       return <Preloader/>
    }
-
-   debugger
    return <div className={s.content}>
       <div className={s.profile__fon}>
          <img src="https://vk-oblozhki.ru/photos/big/shestiugol-niki-rendering-svet-forma-339-3732.jpg" alt="" />

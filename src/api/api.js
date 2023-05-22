@@ -13,32 +13,20 @@ export const usersAPI = {
       return instance.get(`users?page=${currentPage = 1}&count=${pageSize = 10}`).then(response => response.data);
    },
 
-   followUser(id, follow, toggleFollowingProgress) {
-      instance.post(`follow/${id}`, {}).then(response => {
-            if (response.data.resultCode === 0) {
-               follow(id);
-            }
-            toggleFollowingProgress(false, id);
-         });
+   follow(id) {
+      return instance.post(`follow/${id}`);
    },
 
-   unfollowUser(id, unfollow, toggleFollowingProgress) {
-      return instance.delete(`follow/${id}`).then(response => {
-         if (response.data.resultCode === 0) {
-            unfollow(id);
-         }
-         toggleFollowingProgress(false, id);
-      });
+   unfollow(id) {
+      return instance.delete(`follow/${id}`);
+   },
+   getProfile(userId){
+      return instance.get(`profile/` + userId);
    }
 }
 
-export const auth = {
-   authMe(setAuthUserData) {
-      return instance.get(`auth/me`).then(response => {
-         if (response.data.resultCode === 0) {
-            let { id, email, login } = response.data.data;
-            setAuthUserData(id, email, login);
-         }
-      });
+export const authAPI = {
+   me() {
+      return instance.get(`auth/me`);
    },
 }

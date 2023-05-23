@@ -1,6 +1,7 @@
 import { sendMessage, updateNewMessageBody } from "../../redux/messengerPage-reducer";
 import Messenger from "./Messenger";
 import { connect } from "react-redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 /*const MessengerContainer = (props) => {
 
@@ -18,11 +19,13 @@ import { connect } from "react-redux";
                      updateNewMessageBody={onNewMessageChange} 
                      sendMessage={onSendMessageClick}/>
 }*/
+let AuthRedirectComponent = withAuthRedirect(Messenger);
+
 let mapStateToProps = (state) => {
    return {
       messengerPage: state.messengerPageReducer
    }
 }
-const MessengerContainer = connect(mapStateToProps, {updateNewMessageBody, sendMessage})(Messenger);
+const MessengerContainer = connect(mapStateToProps, {updateNewMessageBody, sendMessage})(AuthRedirectComponent);
 
 export default MessengerContainer;

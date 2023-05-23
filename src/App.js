@@ -10,6 +10,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import LoginPage from './components/Login/Login';
 
 
 
@@ -29,6 +30,7 @@ const App = (props) => {
                   <Route path='/Friends' element={<Friends />}/>
                   <Route path='/Music' element={<Music />}/>
                   <Route path='/Settings' element={<Settings />}/>
+                  <Route path='/Login' element={<LoginPage />}/>
                </Routes>
             </div>
          </div>

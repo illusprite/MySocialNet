@@ -7,6 +7,7 @@ import {
    useNavigate,
    useParams,
 } from "react-router-dom";
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 class ProfileContainer extends React.Component{
    componentDidMount(){
@@ -20,6 +21,10 @@ class ProfileContainer extends React.Component{
       return <Profile {...this.props} profile={this.props.profile}/>
    }
 }
+
+
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
 let mapStateToProps = (state) => ({
    profile: state.profilePageReducer.profile
 })
@@ -40,4 +45,4 @@ function withRouter(Component) {
    return ComponentWithRouterProp;
 }
 
-export default connect(mapStateToProps, { getUserProfile})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, { getUserProfile})(withRouter(AuthRedirectComponent));

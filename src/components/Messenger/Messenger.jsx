@@ -2,7 +2,7 @@ import React from "react";
 import s from './Messenger.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-
+import { Navigate } from "react-router-dom"
 const Messenger = (props) => {
 
    let state = props.messengerPage;
@@ -23,6 +23,7 @@ const Messenger = (props) => {
       props.sendMessage();
    };
    
+   if(!props.isAuth) return <Navigate to={"/Login"} />;
 
    return <div className={s.dialogs}>
       <div className={s.dialogsItems}>

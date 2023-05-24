@@ -24,7 +24,7 @@ function ProfileInfo(props) {
          <div className={s.name}>
             Cheshegorov Alexey
          </div>
-         <ProfileStatus status={"Prrrrr"}/>
+         <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
          <div className={s.city}>
             Ekaterinburg
          </div>

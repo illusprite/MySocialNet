@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import ProfileStatus from './ProfileStatus';
 import Preloader from './../../common/Preloader/Preloader';
 import userPhoto from '../../../assets/images/f330830a9bcecaa040636c4ab357277d.jpg';
 function ProfileInfo(props) {
@@ -23,9 +24,7 @@ function ProfileInfo(props) {
          <div className={s.name}>
             Cheshegorov Alexey
          </div>
-         <div className={s.status}>
-            Prrrr Wake Up!
-         </div>
+         <ProfileStatus status={"Prrrrr"}/>
          <div className={s.city}>
             Ekaterinburg
          </div>

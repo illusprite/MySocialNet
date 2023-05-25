@@ -4,12 +4,14 @@ import profilePageReducer from "./profilePage-reducer";
 import usersPageReducer from "./usersPage-reducer";
 import authReducer from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
+import {reducer as formReducer} from 'redux-form'
 
 let reducers = combineReducers({
    profilePageReducer: profilePageReducer,
    messengerPageReducer: messengerPageReducer,
    usersPageReducer: usersPageReducer,
-   authReducer: authReducer
+   authReducer: authReducer,
+   form: formReducer
 });
 
 let store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware));

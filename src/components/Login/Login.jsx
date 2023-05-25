@@ -1,8 +1,12 @@
+import LoginForm from "./LoginForm";
 
 
 const Login = (props) => {
-   
-   return <h1>LOGIN</h1>
+
+   return <div>
+      <h1>LOGIN</h1>
+      <LoginForm/>
+   </div>
 }
 
 export default Login;

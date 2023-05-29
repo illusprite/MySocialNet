@@ -20,7 +20,6 @@ let initialState = {
       {id:6, message:'Irina'},
       {id:7, message:'FlexPlace'},
    ],
-   newMessageBody: "",
 };
 
 const messengerPageReducer = (state = initialState, action) => {
@@ -32,10 +31,9 @@ const messengerPageReducer = (state = initialState, action) => {
          };
       }
       case SEND_MESSAGE:{
-         let body = state.newMessageBody;
+         let body = action.newMessageBody;
          return {
             ...state,
-            newMessageBody: '',
             messengesData: [...state.messengesData, { id: 8, message: body}]
          };
       }
@@ -44,6 +42,6 @@ const messengerPageReducer = (state = initialState, action) => {
       }
    }
 }
-export const sendMessage = () => ({type: SEND_MESSAGE})
+export const sendMessage = (newMessageBody) => ({type: SEND_MESSAGE, newMessageBody})
 export const updateNewMessageBody = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
 export default messengerPageReducer;

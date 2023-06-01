@@ -1,3 +1,4 @@
+//Этот hoc защищает нас от перехода на профиль незалогининным пользователям
 import React from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";

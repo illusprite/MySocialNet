@@ -4,6 +4,7 @@ import { maxLengthCreator, required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { login, logout } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
+import s from "../common/FormsControls/FormsControls.module.css";
 
 const LoginForm = (props) => {
    return <form onSubmit={props.handleSubmit}>
@@ -14,8 +15,12 @@ const LoginForm = (props) => {
             <Field placeholder={"Password"} name="password" validate={[required, maxLengthCreator(100)]} component={Input} type={"password"}/>
          </div>
          <div>
-            <Field type={"checkbox"} name="rememberMe" validate={[required, maxLengthCreator(100)]} component={Input}/> remember me
+            <Field type={"checkbox"} name={"rememberMe"} component={Input}/> remember me
          </div>
+         { props.error &&
+            <div className={s.formSummaryError}>
+            {props.error}
+         </div>}
          <div>
             <button>Login</button>
          </div>

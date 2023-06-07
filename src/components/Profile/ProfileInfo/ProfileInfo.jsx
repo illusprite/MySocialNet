@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css';
 import ProfileStatus from './ProfileStatus';
 import Preloader from './../../common/Preloader/Preloader';
 import userPhoto from '../../../assets/images/f330830a9bcecaa040636c4ab357277d.jpg';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 function ProfileInfo(props) {
    if(!props.profile){
       return <Preloader/>
@@ -24,7 +25,7 @@ function ProfileInfo(props) {
          <div className={s.name}>
             Cheshegorov Alexey
          </div>
-         <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+         <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
          <div className={s.city}>
             Ekaterinburg
          </div>

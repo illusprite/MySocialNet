@@ -8,11 +8,10 @@ let Users = (props) => {
    for (let i = 1; i <= pagesCount; i++) {
       pages.push(i);
    }
-
    return <div className={s.item}>
       <div>
          {pages.map(p => {
-            return <span className={props.currentPage === p && s.selectedPage} onClick={(e) => { props.onPageChanged(p); }}>{p}</span>
+            return <span className={props.currentPage === p && s.selectedPage} onClick={(e) => { props.onPageChanged(p);}}>{p}</span>
          })}
       </div>
       {

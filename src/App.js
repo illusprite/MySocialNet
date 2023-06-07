@@ -6,36 +6,49 @@ import Friends from './components/Friends/Friends';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
+import { Component } from 'react';
+import { initializeApp } from './redux/app-reducer';
+import { connect } from 'react-redux';
+import Preloader from './components/common/Preloader/Preloader';
 
-
-
-
-const App = (props) => {
-   
-   return (<BrowserRouter>
+class App extends Component {
+   componentDidMount() {
+      this.props.initializeApp();
+   }
+   render() {
+      if (!this.props.initialized) {
+         return <Preloader />
+      }
+      return (<BrowserRouter>
          <div className='app-wrapper'>
             <HeaderContainer />
             <Nav />
             <div className='app-wrapper-content'>
                <Routes>
-                  <Route path='/Profile/:userId?' element={<ProfileContainer/>}/>
-                  <Route path='/Users' element={<UsersContainer/>}/>
-                  <Route path='/News' element={<News />}/>
-                  <Route path='/Messenger/*' element={<MessengerContainer/>}/>
-                  <Route path='/Friends' element={<Friends />}/>
-                  <Route path='/Music' element={<Music />}/>
-                  <Route path='/Settings' element={<Settings />}/>
-                  <Route path='/Login' element={<LoginPage />}/>
+                  <Route path='/Profile/:userId?' element={<ProfileContainer />} />
+                  <Route path='/Users' element={<UsersContainer />} />
+                  <Route path='/News' element={<News />} />
+                  <Route path='/Messenger/*' element={<MessengerContainer />} />
+                  <Route path='/Friends' element={<Friends />} />
+                  <Route path='/Music' element={<Music />} />
+                  <Route path='/Settings' element={<Settings />} />
+                  <Route path='/Login' element={<LoginPage />} />
                </Routes>
             </div>
          </div>
       </BrowserRouter>);
+   }
 }
-export default App;
+
+const mapStateToProps = (state) => ({
+   initialized: state.app.initialized
+});
+
+export default connect(mapStateToProps, { initializeApp })(App);
+
 
 

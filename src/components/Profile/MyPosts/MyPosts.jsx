@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import s from './MyPosts.module.css';
 import MyPost from './Post/MyPost';
 import { Field, reduxForm } from 'redux-form';
@@ -20,7 +20,9 @@ let AddNewPostForm = (props) => {
 
 const AddNewPostReduxForm = reduxForm({ form: 'ProfileAddNewPostForm' })(AddNewPostForm);
 
-function MyPosts(props) {
+const MyPosts = memo((props) => {
+   console.log("RENDER!!!");
+   
    let postsElements = props.postsData
       .map(p => <MyPost message={p.message} key={p.id} likesCount={p.likesCount} />);
    let newPostElement = React.createRef();
@@ -36,6 +38,6 @@ function MyPosts(props) {
 
       {postsElements}
    </div>
-}
+}); 
 
 export default MyPosts;

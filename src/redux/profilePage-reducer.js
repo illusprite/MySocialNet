@@ -1,6 +1,7 @@
 import { profileAPI, usersAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
+const DELETE_POST = 'DELETE_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 let initialState = {
@@ -32,6 +33,12 @@ const profilePageReducer = (state = initialState, action) => {
             newPostText: ''
          };
       }
+      case DELETE_POST: {
+         return {
+            ...state,
+            postsData: state.postsData.filter(p => p.id != action.postId)
+         }
+      }
       case SET_USER_PROFILE: {
          return {
             ...state,
@@ -50,6 +57,7 @@ const profilePageReducer = (state = initialState, action) => {
    }
 };
 export const addPost = (newPostText) => ({ type: ADD_POST, newPostText })//return не нужен, он вместо ()
+export const deletePost = (postId) => ({ type: DELETE_POST, postId});
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 

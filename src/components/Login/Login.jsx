@@ -1,25 +1,25 @@
 import { Field, reduxForm } from "redux-form";
-import { Input } from "../common/FormsControls/FormsControls";
+import { createField, Input } from "../common/FormsControls/FormsControls";
 import { maxLengthCreator, required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { login, logout } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
 import s from "../common/FormsControls/FormsControls.module.css";
 
-const LoginForm = (props) => {
-   return <form onSubmit={props.handleSubmit}>
+const LoginForm = ({handleSubmit, error}) => {
+   return <form onSubmit={handleSubmit}>
          <div>
-            <Field placeholder={"Email"} name="email" validate={[required, maxLengthCreator(100)]} component={Input}/>
+            {createField("Email", "email", [required, maxLengthCreator(100)], Input)}
          </div>
          <div>
-            <Field placeholder={"Password"} name="password" validate={[required, maxLengthCreator(100)]} component={Input} type={"password"}/>
+            {createField("Password", "password", [required, maxLengthCreator(100)], Input, {type: "password"})}
          </div>
          <div>
-            <Field type={"checkbox"} name={"rememberMe"} component={Input}/> remember me
+            {createField(null, "rememberMe", [required, maxLengthCreator(100)], Input, {type: "checkbox"}, "remember me")}
          </div>
-         { props.error &&
+         { error &&
             <div className={s.formSummaryError}>
-            {props.error}
+            {error}
          </div>}
          <div>
             <button>Login</button>
@@ -28,11 +28,11 @@ const LoginForm = (props) => {
 }
 const LoginReduxForm = reduxForm({form:'login'})(LoginForm);
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
    const onSubmit = (formData) => {
-      props.login(formData.email, formData.password, formData.rememberMe);
+      login(formData.email, formData.password, formData.rememberMe);
    }
-   if(props.isAuth){
+   if(isAuth){
       return <Navigate to={"/profile"}/>
    }
 

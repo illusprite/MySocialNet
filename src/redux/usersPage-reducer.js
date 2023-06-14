@@ -1,12 +1,13 @@
 import { usersAPI } from "../api/api";
+import { updateObjectInArray } from "../utils/object-helpers";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
+const FOLLOW = 'usersPAge-reducer/FOLLOW';
+const UNFOLLOW = 'usersPAge-reducer/UNFOLLOW';
+const SET_USERS = 'usersPAge-reducer/SET_USERS';
+const SET_CURRENT_PAGE = 'usersPAge-reducer/SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'usersPAge-reducer/SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'usersPAge-reducer/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'usersPAge-reducer/TOGGLE_IS_FOLLOWING_PROGRESS';
 
 let initialState = {
    users: [],
@@ -22,23 +23,13 @@ const usersPageReducer = (state = initialState, action) => {
       case FOLLOW: {
          return {
             ...state,
-            users: state.users.map(u => {
-               if (u.id === action.userId) {
-                  return { ...u, followed: true };
-               };
-               return u;
-            })
+            users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
          };
       };
       case UNFOLLOW: {
          return {
             ...state,
-            users: state.users.map(u => {
-               if (u.id === action.userId) {
-                  return { ...u, followed: false };
-               };
-               return u;
-            })
+            users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
          };
       };
       case SET_USERS: {
@@ -86,37 +77,29 @@ export const setUsersTotalCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
-export const requestUsers = (currentPage, pageSize) => {
-   return (dispatch) => {
-      dispatch(toggleIsFetching(true));
-      dispatch(setCurrentPage(currentPage));
-      usersAPI.getUsers(currentPage, pageSize).then(data => {
-         dispatch(toggleIsFetching(false));
-         dispatch(setUsers(data.items));
-         dispatch(setUsersTotalCount(data.totalCount));
-      });
+const followUnfollowFlow = async (dispatch, apiMethod, AC, id) => {
+   dispatch(toggleFollowingProgress(true, id));
+   let response = await apiMethod(id);
+   if (response.data.resultCode === 0) {
+      dispatch(AC(id));
    }
+   dispatch(toggleFollowingProgress(false, id));
 }
-export const follow = (id) => {
-   return (dispatch) => {
-      dispatch(toggleFollowingProgress(true, id));
-      usersAPI.follow(id).then(response => {
-         if (response.data.resultCode === 0) {
-            dispatch(followSuccess(id));
-         }
-         dispatch(toggleFollowingProgress(false, id));
-      });;
-   }
+export const follow = (id) => async (dispatch) => {
+   followUnfollowFlow(dispatch, usersAPI.follow.bind(usersAPI), followSuccess, id);
+};
+export const unfollow = (id) => async (dispatch) => {
+   followUnfollowFlow(dispatch, usersAPI.unfollow.bind(usersAPI), unfollowSuccess, id);
+};
+
+export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
+   dispatch(toggleIsFetching(true));
+   dispatch(setCurrentPage(currentPage));
+   let data = await usersAPI.getUsers(currentPage, pageSize);
+   dispatch(toggleIsFetching(false));
+   dispatch(setUsers(data.items));
+   dispatch(setUsersTotalCount(data.totalCount));
 }
-export const unfollow = (id) => {
-   return (dispatch) => {
-      dispatch(toggleFollowingProgress(true, id));
-      usersAPI.unfollow(id).then(response => {
-         if (response.data.resultCode === 0) {
-            dispatch(unfollowSuccess(id));
-         }
-         dispatch(toggleFollowingProgress(false, id));
-      });;
-   }
-}
+
+
 export default usersPageReducer;

@@ -1,9 +1,9 @@
 import s from './Users.module.css';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
-let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, ...props }) => {
+let Users = ({ totalItemsCount, pageSize, currentPage, onPageChanged, ...props }) => {
    return <div className={s.item}>
-      <Paginator totalUsersCount={totalUsersCount}
+      <Paginator totalItemsCount={totalItemsCount}
          pageSize={pageSize}
          currentPage={currentPage}
          onPageChanged={onPageChanged} />

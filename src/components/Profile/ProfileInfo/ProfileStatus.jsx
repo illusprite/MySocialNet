@@ -42,9 +42,9 @@ class ProfileStatus extends React.Component {
    render() {
       return <div>
          {!this.state.editMode &&
-            <div onDoubleClick={this.activateEditMode} className={s.status}>
+            <span onDoubleClick={this.activateEditMode} className={s.status}>
                {this.props.status || "----"}
-            </div>
+            </span>
          }
          {this.state.editMode &&
             <div>

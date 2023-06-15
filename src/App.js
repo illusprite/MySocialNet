@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import MessengerContainer from './components/Messenger/MessengerContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Nav from './components/Nav/Nav';
@@ -14,6 +15,8 @@ import { Component } from 'react';
 import { initializeApp } from './redux/app-reducer';
 import { connect } from 'react-redux';
 import Preloader from './components/common/Preloader/Preloader';
+import store from './redux/redux-store';
+import {Provider} from 'react-redux';
 
 class App extends Component {
    componentDidMount() {
@@ -48,7 +51,17 @@ const mapStateToProps = (state) => ({
    initialized: state.app.initialized
 });
 
-export default connect(mapStateToProps, { initializeApp })(App);
+export let AppContainer = connect(mapStateToProps, { initializeApp })(App);;
+
+const SamuraiJSApp = (props) => {
+   return <React.StrictMode>
+      <Provider store={store}>
+         <AppContainer />
+      </Provider>
+   </React.StrictMode>
+}
+
+export default SamuraiJSApp;
 
 
 

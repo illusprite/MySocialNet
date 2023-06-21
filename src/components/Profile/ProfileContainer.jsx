@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { getUserProfile, getStatus, updateStatus } from './../../redux/profilePage-reducer';
+import { getUserProfile, getStatus, updateStatus, savePhoto } from './../../redux/profilePage-reducer';
 import {
    useLocation,
    useNavigate,
@@ -11,7 +11,7 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component{
-   componentDidMount(){
+   refreshProfile(){
       let userId = this.props.router.params.userId;
       if(!userId){
          userId = this.props.authorizedUserId;
@@ -22,9 +22,23 @@ class ProfileContainer extends React.Component{
       this.props.getUserProfile(userId);   
       this.props.getStatus(userId);
    }
+   componentDidMount(){
+      this.refreshProfile();
+   }
    
+   componentDidUpdate(prevProps, prevState, snapshot){
+      debugger
+      if(this.props.router.params.userId != prevProps.router.params.userId){
+         this.refreshProfile();
+      }
+   }
+   //Разберись, почему мы дописываем router.params.
+   //
+
    render() {
       return <Profile {...this.props} 
+      savePhoto={this.props.savePhoto}
+      isOwner={!this.props.router.params.userId}
       profile={this.props.profile} 
       status={this.props.status}
       updateStatus={this.props.updateStatus}/>
@@ -55,7 +69,7 @@ function withRouter(Component) {
 }
 
 export default compose(
-   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus}),
+   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto}),
    withRouter,
    withAuthRedirect
    )(ProfileContainer);

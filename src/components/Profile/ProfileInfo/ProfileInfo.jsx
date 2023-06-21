@@ -1,31 +1,33 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import ProfileStatus from './ProfileStatus';
 import Preloader from './../../common/Preloader/Preloader';
 import userPhoto from '../../../assets/images/f330830a9bcecaa040636c4ab357277d.jpg';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
-function ProfileInfo(props) {
-   if(!props.profile){
-      return <Preloader/>
+
+const ProfileInfo = (props) => {
+   if (!props.profile) {
+      return <Preloader />
    }
-   
+
+   const onMainPhotoSelected = (e) => {
+      if (e.target.files.length) {
+         props.savePhoto(e.target.files[0]);
+      }
+   }
+
    return <div className={s.content}>
       <div className={s.profile__fon}>
          <img src="https://vk-oblozhki.ru/photos/big/shestiugol-niki-rendering-svet-forma-339-3732.jpg" alt="" />
       </div>
       <div className={s.profile__logo}>
-         {props.profile.photos.large
-         ? <img src={props.profile.photos.large} alt="" />
-         : props.profile.userId = 29095
-         ? <img src="https://i.pinimg.com/736x/45/ef/d3/45efd3bcc430b83395f629a05a489ec5.jpg" alt="" />
-         : <img src={userPhoto} alt="" />
-         }
+         <img src={props.profile.photos.large || userPhoto} alt="" />
+         {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
       </div>
       <div className={s.profile__info}>
          <div className={s.name}>
             Cheshegorov Alexey
          </div>
-         <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+         <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
          <div className={s.city}>
             Ekaterinburg
          </div>

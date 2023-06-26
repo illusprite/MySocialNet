@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { getUserProfile, getStatus, updateStatus, savePhoto } from './../../redux/profilePage-reducer';
+import { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile } from './../../redux/profilePage-reducer';
 import {
    useLocation,
    useNavigate,
@@ -27,7 +27,6 @@ class ProfileContainer extends React.Component{
    }
    
    componentDidUpdate(prevProps, prevState, snapshot){
-      debugger
       if(this.props.router.params.userId != prevProps.router.params.userId){
          this.refreshProfile();
       }
@@ -69,7 +68,7 @@ function withRouter(Component) {
 }
 
 export default compose(
-   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto}),
+   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile}),
    withRouter,
    withAuthRedirect
    )(ProfileContainer);

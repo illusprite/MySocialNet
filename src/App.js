@@ -6,9 +6,9 @@ import Friends from './components/Friends/Friends';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
-import LoginPage from './components/Login/Login';
+import Login from './components/Login/Login';
 import { Component } from 'react';
 import { initializeApp } from './redux/app-reducer';
 import { connect } from 'react-redux';
@@ -41,7 +41,7 @@ class App extends Component {
                      <Route path='/Friends' element={<Friends />} />
                      <Route path='/Music' element={<Music />} />
                      <Route path='/Settings' element={<Settings />} />
-                     <Route path='/Login' element={<LoginPage />} />
+                     <Route path='/Login' element={<Login />}/>
                   </Routes>
                </Suspense>
             </div>

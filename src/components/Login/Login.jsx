@@ -6,42 +6,41 @@ import { login, logout } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
 import s from "../common/FormsControls/FormsControls.module.css";
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
    return <form onSubmit={handleSubmit}>
-         <div>
-            {createField("Email", "email", [required, maxLengthCreator(100)], Input)}
-         </div>
-         <div>
-            {createField("Password", "password", [required, maxLengthCreator(100)], Input, {type: "password"})}
-         </div>
-         <div>
-            {createField(null, "rememberMe", [required, maxLengthCreator(100)], Input, {type: "checkbox"}, "remember me")}
-         </div>
-         { error &&
-            <div className={s.formSummaryError}>
+
+      {createField("Email", "email", [required], Input)}
+      {createField("Password", "password", [required], Input, { type: "password" })}
+      {createField(null, "rememberMe", [], Input, { type: "checkbox" }, "remember me")}
+
+      {captchaUrl && <img src={captchaUrl} />}
+      {captchaUrl && createField("Symbols from image", "captcha", [required], Input, {})}
+      {error &&
+         <div className={s.formSummaryError}>
             {error}
          </div>}
-         <div>
-            <button>Login</button>
-         </div>
-      </form>
+      <div>
+         <button>Login</button>
+      </div>
+   </form>
 }
-const LoginReduxForm = reduxForm({form:'login'})(LoginForm);
+const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
-const Login = ({login, isAuth}) => {
+const Login = ({ login, isAuth, captchaUrl }) => {
+   debugger
    const onSubmit = (formData) => {
       login(formData.email, formData.password, formData.rememberMe);
    }
-   if(isAuth){
-      return <Navigate to={"/profile"}/>
+   if (isAuth) {
+      return <Navigate to={"/profile"} />
    }
-
    return <div>
       <h1>LOGIN</h1>
-      <LoginReduxForm onSubmit={onSubmit}/>
+      <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl} />
    </div>
 }
 const mapStateToProps = (state) => ({
+   captchaUrl: state.authReducer.captchaUrl,
    isAuth: state.authReducer.isAuth
 })
-export default connect(mapStateToProps, {login, logout} )(Login);
+export default connect(mapStateToProps, { login, logout })(Login);

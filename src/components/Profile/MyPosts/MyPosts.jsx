@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import s from './MyPosts.module.css';
+import s from './MyPosts.module.scss';
 import MyPost from './Post/MyPost';
 import { Field, reduxForm } from 'redux-form';
 import { maxLengthCreator, required } from '../../../utils/validators/validators';
@@ -9,7 +9,7 @@ let AddNewPostForm = (props) => {
    return <form onSubmit={props.handleSubmit}>
       <div>
          <Field cols="50" rows="4" name="newPostText" 
-         placeholder="Enter your post" component={Textarea}
+         placeholder="What's new?" component={Textarea}
          validate={[required, maxLengthCreator(10)]} />
       </div>
       <div>
@@ -21,18 +21,15 @@ let AddNewPostForm = (props) => {
 const AddNewPostReduxForm = reduxForm({ form: 'ProfileAddNewPostForm' })(AddNewPostForm);
 
 const MyPosts = memo((props) => {
-   console.log("RENDER!!!");
-   
    let postsElements = props.postsData
-      .map(p => <MyPost message={p.message} key={p.id} likesCount={p.likesCount} />);
-   let newPostElement = React.createRef();
+      .map(p => <MyPost message={p.message} key={p.id} likesCount={p.likesCount} ava={props.ava}/>);
 
    let onAddPost = (values) => {
       props.addPost(values.newPostText);
    };
    return <div className={s.posts}>
       <div className={s.posts__title}>
-         My posts
+         <p>My posts</p>
          <AddNewPostReduxForm onSubmit={onAddPost} />
       </div>
 

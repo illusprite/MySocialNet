@@ -1,0 +1,26 @@
+@import './../../../index.scss';
+
+.selectedPage {
+   font-weight: bold;
+}
+
+.paginator {
+   font-size: 18px;
+
+   height: 40px;
+   line-height: 100%;
+   & p {
+      height: 100%;
+      line-height: 100%;
+      margin-right: 10px;
+   }
+
+   & button {
+      text-align: center;
+      @extend %btnstyles;
+   }
+}
+
+.pageNumber {
+   margin-right: 3px;
+}

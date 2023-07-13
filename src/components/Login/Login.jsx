@@ -1,10 +1,10 @@
-import { Field, reduxForm } from "redux-form";
+import { reduxForm } from "redux-form";
 import { createField, Input } from "../common/FormsControls/FormsControls";
-import { maxLengthCreator, required } from "../../utils/validators/validators";
+import { required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { login, logout } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
-import s from "../common/FormsControls/FormsControls.module.css";
+import s from "../common/FormsControls/FormsControls.module.scss";
 
 const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
    return <form onSubmit={handleSubmit}>
@@ -27,7 +27,6 @@ const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
 const Login = ({ login, isAuth, captchaUrl }) => {
-   debugger
    const onSubmit = (formData) => {
       login(formData.email, formData.password, formData.rememberMe);
    }

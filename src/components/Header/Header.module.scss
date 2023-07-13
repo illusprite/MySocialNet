@@ -1,0 +1,42 @@
+@import "./../../index.scss";
+
+.header {
+   grid-area: h;
+   background-color: blueviolet;
+
+   & img {
+      margin-left: 119px;
+      height: 60px;
+   }
+}
+
+.login {
+   height: 100%;
+   float: right;
+   display: flex;
+   align-items: center;
+   margin-right: 50px;
+
+   &Authorized {
+      display: flex;
+      align-items: center;
+
+      & p {
+         height: 100%;
+         line-height: 100%;
+         margin-right: 10px;
+      }
+
+      & button {
+         width: 90px;
+         @extend %btnstyles;
+      }
+   }
+
+   &NotAuthorized {
+      width: 40px;
+      margin-right: 10px;
+      @extend %btnstyles;
+      cursor: pointer;
+   }
+}

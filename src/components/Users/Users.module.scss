@@ -1,0 +1,23 @@
+.item {
+   font-size: 20px;
+   margin: 20px;
+   & img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+   }
+}
+
+.user {
+   &__item {
+      display: flex;
+      margin-top: 10px;
+      & span{
+         margin-right:10px;
+      }
+   }
+   &__info{
+      display: flex;
+      flex-direction: column;
+   }
+}

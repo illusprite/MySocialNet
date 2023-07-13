@@ -1,5 +1,5 @@
 import { Field } from "redux-form";
-import s from "./FormsControls.module.css";
+import s from "./FormsControls.module.scss";
 const FormControl = ({ input, meta, child, ...props }) => {
    const hasError = meta.touched && meta.error;
    return (

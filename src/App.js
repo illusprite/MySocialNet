@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import React, { Suspense } from 'react';
 import UsersContainer from './components/Users/UsersContainer';
 import Nav from './components/Nav/Nav';
@@ -6,7 +6,7 @@ import Friends from './components/Friends/Friends';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { Component } from 'react';

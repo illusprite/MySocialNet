@@ -1,13 +1,19 @@
-import s from './Users.module.css';
+import s from './Users.module.scss';
 import userPhoto from '../../assets/images/f330830a9bcecaa040636c4ab357277d.jpg';
 import { NavLink } from 'react-router-dom';
 let User = ({ user, followingInProgress, follow, unfollow }) => {
-   return <div>
+   return <div className={s.user__item}>
       <span>
          <div>
             <NavLink to={'/profile/' + user.id}>
                <img className={s.userPhoto} src={user.photos.small != null ? user.photos.small : userPhoto} alt="" />
             </NavLink>
+         </div>
+      </span>
+      <div className={s.user__info}>
+         <div>
+               {user.name + " "}
+               {user.status}
          </div>
          <div>
             {user.followed
@@ -21,17 +27,7 @@ let User = ({ user, followingInProgress, follow, unfollow }) => {
                }}>Follow</button>
             }
          </div>
-      </span>
-      <span>
-         <span>
-            <div>{user.name}</div>
-            <div>{user.status}</div>
-         </span>
-         <span>
-            <div>{"u.location.country"}</div>
-            <div>{"u.location.city"}</div>
-         </span>
-      </span>
+      </div>
    </div>
 }
 export default User;

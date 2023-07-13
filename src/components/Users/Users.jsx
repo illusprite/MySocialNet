@@ -1,4 +1,4 @@
-import s from './Users.module.css';
+import s from './Users.module.scss';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 let Users = ({ totalItemsCount, pageSize, currentPage, onPageChanged, ...props }) => {
@@ -8,10 +8,10 @@ let Users = ({ totalItemsCount, pageSize, currentPage, onPageChanged, ...props }
          currentPage={currentPage}
          onPageChanged={onPageChanged} />
       {
-         props.users.map(u => <User user={u} 
-         key={u.id} followingInProgress={props.followingInProgress} 
-         follow={props.follow} unfollow={props.unfollow}/>)
+         props.users.map(u => <User user={u}
+            key={u.id} followingInProgress={props.followingInProgress}
+            follow={props.follow} unfollow={props.unfollow} />)
       }
-      </div>
+   </div>
 }
 export default Users;

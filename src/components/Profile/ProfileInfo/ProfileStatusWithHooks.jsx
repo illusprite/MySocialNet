@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import s from './ProfileInfo.module.css';
+import s from './ProfileInfo.module.scss';
 
 const ProfileStatusWithHooks = (props) => {
 
@@ -24,7 +24,7 @@ const ProfileStatusWithHooks = (props) => {
       
       {//Если слева ложь, то дальше, не пойдёт, т.к. в лог. операции всё равно будет ложь
       !editMode &&
-         <div onDoubleClick={activateEditMode} className={s.status}>
+         <div onDoubleClick={activateEditMode} className={s.profile__status}>
             {props.status || "----"}
          </div>
       }

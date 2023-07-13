@@ -1,6 +1,15 @@
 const UPDATE_NEW_MESSAGE_BODY = 'messengerPage-reducer/UPDATE_NEW_MESSAGE_BODY';
 const SEND_MESSAGE = 'messengerPage-reducer/SEND_MESSAGE';
 
+type DialogType = {
+   id: number
+   name: string
+}
+type MessageType = {
+   id: number
+   message: string
+}
+
 let initialState = {
    messengerData: [
       {id:1, name:'Max'},
@@ -10,7 +19,7 @@ let initialState = {
       {id:5, name:'Diana'},
       {id:6, name:'Irina'},
       {id:7, name:'FlexPlace'},
-   ],
+   ] as Array<DialogType>,
    messengesData: [
       {id:1, message:'Hi'},
       {id:2, message:'Fffff'},
@@ -19,17 +28,13 @@ let initialState = {
       {id:5, message:'Purple season'},
       {id:6, message:'Irina'},
       {id:7, message:'FlexPlace'},
-   ],
+   ] as Array<MessageType>,
 };
 
-const messengerPageReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState
+
+const messengerPageReducer = (state = initialState, action: any): InitialStateType => {
    switch(action.type){
-      case UPDATE_NEW_MESSAGE_BODY:{
-         return {
-            ...state,
-            newMessageBody: action.body
-         };
-      }
       case SEND_MESSAGE:{
          let body = action.newMessageBody;
          return {
@@ -37,11 +42,23 @@ const messengerPageReducer = (state = initialState, action) => {
             messengesData: [...state.messengesData, { id: 8, message: body}]
          };
       }
+      /* case UPDATE_NEW_MESSAGE_BODY:{
+         return {
+            ...state,
+            newMessageBody: action: any.body
+         };
+      } */
       default:{
          return state;
       }
    }
 }
-export const sendMessage = (newMessageBody) => ({type: SEND_MESSAGE, newMessageBody})
-export const updateNewMessageBody = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
-export default messengerPageReducer;
+
+type SendMessageActionType = {
+   type: typeof SEND_MESSAGE
+   newMessageBody: string
+}
+
+export const sendMessage = (newMessageBody: string): SendMessageActionType => ({type: SEND_MESSAGE, newMessageBody})
+
+export default messengerPageReducer

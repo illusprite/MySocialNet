@@ -1,5 +1,5 @@
 import React from "react";
-import s from './Messenger.module.css';
+import s from './Messenger.module.scss';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { Navigate } from "react-router-dom"

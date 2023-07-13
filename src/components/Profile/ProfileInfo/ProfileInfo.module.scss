@@ -1,0 +1,124 @@
+@import "./../../../index.scss";
+
+.content {
+   display: grid;
+   width: 100%;
+   margin: 0 auto;
+   grid-template-areas:
+      "f f"
+      "l i"
+      "p p";
+
+   grid-template-columns: 2fr 10fr;
+   grid-template-rows: 250px 250px 1fr;
+   margin-bottom: 20px;
+}
+
+.profile {
+   grid-area: i;
+   margin-top: 30px;
+   display: flex;
+   flex-wrap: wrap;
+   height: 100%;
+
+   &__fon {
+      grid-area: f;
+      height: 250px;
+
+      & img {
+         height: 250px;
+         width: 100%;
+      }
+   }
+
+   &__logo {
+      grid-area: l;
+      margin: 30px 0px 0px 30px;
+
+      & img {
+         width: 200px;
+         border-radius: 10%;
+      }
+   }
+
+   &__status {
+      font-size: 18px;
+      line-height: 18px;
+      margin-bottom: 10px;
+   }
+
+   &__name {
+      flex: 0 0 50%;
+      font-size: 28px;
+   }
+
+   &__info {
+      position: absolute;
+      background-color: rgb(131, 255, 214);
+      padding: 20px;
+      border-radius: 15px;
+      width: 45%;
+      &Activated {
+         & button {
+            @extend %btnstyles;
+         }
+      }
+
+      &Closed {
+         position: absolute;
+         cursor: pointer;
+         height: 30px;
+         width: 30px;
+         top: 10px;
+         right: -30px;
+
+         &::before, &::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 8px;
+            width: 14px;
+            height: 2px;
+            background-color: rgb(131, 255, 214);
+         }
+         &::before{
+            transform: rotate(45deg);
+         }
+         &::after{
+            transform: rotate(135deg);
+         }
+      }
+   }
+
+   &__edit {
+      align-self: start;
+      margin-top: 5px;
+      display: flex;
+
+      & button {
+         cursor: pointer;
+         height: 100%;
+         font-weight: bold;
+         padding: 0 15px;
+         border: 1px solid #fff;
+         border-radius: 25px;
+         background-color: #fff;
+      }
+      &Form{
+         margin-top: 20px;
+         position: relative;
+         z-index: 10;
+         display: flex;
+         width: 200px;
+
+      }
+   }
+}
+
+.city {}
+
+.age {}
+
+.contact {
+   padding-left: 20px;
+}

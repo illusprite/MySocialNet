@@ -1,7 +1,21 @@
 import s from './Users.module.scss';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
-let Users = ({ totalItemsCount, pageSize, currentPage, onPageChanged, ...props }) => {
+import { UserType } from '../../types/types';
+import { FC } from 'react';
+
+type PropsType = {
+   totalItemsCount: number
+   pageSize: number
+   currentPage: number
+   onPageChanged: (pageNumber: number) => void
+   users: Array<UserType>
+   followingInProgress: Array<number>
+   follow: (id: number) => void
+   unfollow: (id: number) => void
+}
+
+let Users: FC<PropsType> = ({ totalItemsCount, pageSize, currentPage, onPageChanged, ...props }) => {
    return <div className={s.item}>
       <Paginator totalItemsCount={totalItemsCount}
          pageSize={pageSize}

@@ -35,9 +35,9 @@ class App extends Component {
                <Suspense fallback={<Preloader/>}>
                   <Routes>
                      <Route path='/Profile/:userId?' element={<ProfileContainer />} />
-                     <Route path='/Users' element={<UsersContainer />} />
+                     <Route path='/Users' element={<UsersContainer pageTitle={"Самураи"} />} />
                      <Route path='/News' element={<News />} />
-                     <Route path='/Messenger/*' element={<MessengerContainer />} />
+                     <Route path='/Messenger/*' element={<MessengerContainer pageTitle={"Сообщения"}/>} />
                      <Route path='/Friends' element={<Friends />} />
                      <Route path='/Music' element={<Music />} />
                      <Route path='/Settings' element={<Settings />} />

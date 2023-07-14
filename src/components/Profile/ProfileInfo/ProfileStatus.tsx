@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import s from './ProfileInfo.module.scss';
 
-class ProfileStatus extends React.Component {
+type PropsType = {
+   status: string
+   updateStatus: (status: string) => void
+}
+type StateType = {
+   editMode: boolean
+   status: string
+}
+
+class ProfileStatus extends React.Component<PropsType, StateType> {
 
    state = {
       editMode: false,
@@ -23,7 +32,7 @@ class ProfileStatus extends React.Component {
       // 2. Теперь вносим данные в gs
       this.props.updateStatus(this.state.status);
    }
-   onStatusChange = (e) => {
+   onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
       // 1. По 1 символу добавляется в локальный стейт или убирается оттуда
       this.setState({ status: e.currentTarget.value });
    }
@@ -32,7 +41,7 @@ class ProfileStatus extends React.Component {
    //Если первый пришёл статус, всё хорошо, он успел отправиться в ls, проблем нет
    //Но когда сначала прогружается профиль, то вместо статуса мы видим пробел
    //Метод ниже синхронизирует загрузку
-   componentDidUpdate(prevProps, prevState) {
+   componentDidUpdate(prevProps: PropsType, prevState: StateType) {
       debugger;
       if (prevProps.status !== this.props.status) {
          this.setState({ status: this.props.status });

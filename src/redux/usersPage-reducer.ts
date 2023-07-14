@@ -90,7 +90,7 @@ type SetUsersActionType = {
    users: Array<UserType>
 }
 export const setUsers = (users: Array<UserType>): SetUsersActionType => ({ type: SET_USERS, users });
-type SetCurrentPageActionType = {
+export type SetCurrentPageActionType = {
    type: typeof SET_CURRENT_PAGE
    currentPage: number
 }
@@ -105,7 +105,7 @@ type ToggleIsFetchingActionType = {
    isFetching: boolean
 }
 export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingActionType => ({ type: TOGGLE_IS_FETCHING, isFetching });
-type ToggleFollowingProgressActionType = {
+export type ToggleFollowingProgressActionType = {
    type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
    isFetching: boolean
    userId: number

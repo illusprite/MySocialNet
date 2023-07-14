@@ -3,6 +3,7 @@ import Messenger from "./Messenger";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import { AppStateType } from "../../redux/redux-store";
 
 /*const MessengerContainer = (props) => {
 
@@ -20,6 +21,9 @@ import { compose } from "redux";
                      updateNewMessageBody={onNewMessageChange} 
                      sendMessage={onSendMessageClick}/>
 }*/
+
+
+
 let mapStateToProps = (state) => {
    return {
       messengerPage: state.messengerPageReducer

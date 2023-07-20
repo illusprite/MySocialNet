@@ -67,7 +67,7 @@ export const getAuthUserData = (): ThunkType => async (dispatch: any) => {
    }
 };
 
-export const login = (email: null | string, password: null | string, rememberMe: any, captcha: any): ThunkType => async (dispatch: any) => {
+export const login = (email: null | string, password: null | string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch: any) => {
    let response = await authAPI.login(email, password, rememberMe, captcha);
    if (response.resultCode === ResultCodesEnum.Success) {
       dispatch(getAuthUserData());
